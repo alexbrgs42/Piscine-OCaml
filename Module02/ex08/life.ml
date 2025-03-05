@@ -134,24 +134,32 @@ let decode_arn r =
 (* EX08 *)
 
 let life nucleotides_str =
-  print_string "\nThe nucleobases are :\n";
-  print_endline nucleotides_str;
-  print_char '\n';
-  let rec do_helix str i = match i with
-    | j when j = String.length str -> []
-    | _ -> (generate_nucleotide (String.get str i))::(do_helix str (i + 1))
-  in
-  let h = do_helix nucleotides_str 0 in
-  print_string "The list of nucleotides generated is :\n";
-  print_endline (helix_to_string h);
-  print_char '\n';
-  let r = generate_rna h in
-  print_string "The rna generated is :\n";
-  print_rna r;
-  print_char '\n';
-  let prot = decode_arn r in
-  print_string "\nThe final protein is :\n";
-  print_endline (string_of_protein prot)
+  if nucleotides_str = "" then
+    print_string "No nucleotides given.\n"
+  else
+    begin
+      print_string "\nThe nucleobases are :\n";
+      print_endline nucleotides_str;
+      print_char '\n';
+      let rec do_helix str i = match i with
+        | j when j = String.length str -> []
+        | _ -> (generate_nucleotide (String.get str i))::(do_helix str (i + 1))
+      in
+      let h = do_helix nucleotides_str 0 in
+      print_string "The list of nucleotides generated is :\n";
+      print_endline (helix_to_string h);
+      print_char '\n';
+      let r = generate_rna h in
+      print_string "The rna generated is :\n";
+      print_rna r;
+      print_char '\n';
+      let prot = decode_arn r in
+      print_string "\nThe final protein is :\n";
+      print_endline (string_of_protein prot)
+    end
 
 let () =
-  life (helix_to_string (generate_helix 3000))
+  print_endline "-------------------------- FIRST TEST --------------------------";
+  life (helix_to_string (generate_helix 3000));
+  print_endline "\n-------------------------- SECOND TEST --------------------------\n";
+  life (helix_to_string (generate_helix (-1)))
