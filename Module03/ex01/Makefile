@@ -37,7 +37,7 @@ $(NAME).opt:	$(OPTOBJS)
 .ml.cmo:
 	$(CAMLC) -c $<
 
-.ml.cmi:
+.mli.cmi:
 	$(CAMLC) -c $<
 
 .ml.cmx:
