@@ -55,8 +55,8 @@ module Make : MAKE =
       let eqs = ( = )
       let add = ( + )
       let sub = ( - )
-      let mul = ( * )
-      let div = ( / )
+      let mul a b = of_float ((to_float a) *. (to_float b))
+      let div a b = of_float ((to_float a) /. (to_float b))
       let foreach a b f =
         let rec aux x = match x with
           | y when y = b -> f b
@@ -71,8 +71,50 @@ let () =
   let x8 = Fixed8.of_float 21.10 in
   let y8 = Fixed8.of_float 21.32 in
   let r8 = Fixed8.add x8 y8 in
+  print_endline "######### SUBJECTS' TESTS #########";
   print_endline (Fixed8.to_string r8);
-  Fixed4.foreach (Fixed4.zero) (Fixed4.one) (fun f -> print_endline (Fixed4.to_string f))
+  Fixed4.foreach (Fixed4.zero) (Fixed4.one) (fun f -> print_endline (Fixed4.to_string f));
+  
+  print_endline "\n######### OWN TESTS #########";
 
-  (* ADD TESTS *)
-  (* TEST IF x * y / y = x *)
+  print_string "21.10 * 21.32 : ";
+  print_endline (Fixed8.to_string (Fixed8.mul x8 y8));
+
+  print_string "21.10 - 21.32 : ";
+  print_endline (Fixed8.to_string (Fixed8.sub x8 y8));
+
+  print_string "21.10 / 21.32 : ";
+  print_endline (Fixed8.to_string (Fixed8.div x8 y8));
+
+  print_string "21.10 = 21.32 : ";
+  print_endline (if Fixed8.eqs x8 y8 = true then "true" else "false");
+
+  print_string "21.10 > 21.32 : ";
+  print_endline (if Fixed8.gth x8 y8 = true then "true" else "false");
+
+  print_string "21.10 < 21.32 : ";
+  print_endline (if Fixed8.lth x8 y8 = true then "true" else "false");
+
+  print_string "21.10 >= 21.32 : ";
+  print_endline (if Fixed8.gte x8 y8 = true then "true" else "false");
+
+  print_string "21.10 <= 21.32 : ";
+  print_endline (if Fixed8.lte x8 y8 = true then "true" else "false");
+
+  print_string "x8 == y8: ";
+  print_endline (if Fixed8.eqp x8 y8 = true then "true" else "false");
+
+  print_string "x8 == x8: ";
+  print_endline (if Fixed8.eqp x8 x8 = true then "true" else "false");
+
+  print_string "zero : ";
+  print_endline (Fixed8.to_string Fixed8.zero);
+
+  print_string "one : ";
+  print_endline (Fixed8.to_string Fixed8.one);
+
+  print_string "one + one : ";
+  print_endline (Fixed8.to_string (Fixed8.add Fixed8.one Fixed8.one));
+
+  print_string "to_int 21.32 : ";
+  print_endline (string_of_int (Fixed8.to_int y8))
