@@ -1,0 +1,40 @@
+############## base ##############
+
+NAME = emoc
+
+CMALOPT = ocamlopt
+
+SOURCES = people.ml doctor.ml dalek.ml army.ml main.ml
+
+OBJ = $(SOURCES:.ml=.cmx)
+
+############## rules ##############
+
+all:	$(NAME)
+
+############## compilation ##############
+
+$(NAME):	$(OBJ)
+	$(CMALOPT) -o $(NAME) $(OBJ)
+
+############## link ##############
+
+.SUFFIXES:
+.SUFFIXES:	.ml .cmx
+
+.ml.cmx:
+	$(CMALOPT) -c $<
+
+############## clean ##############
+
+clean:
+	rm -f $(OBJ)
+	rm -f $(SOURCES:.ml=.cmi)
+	rm -f $(SOURCES:.ml=.o)
+
+fclean:	clean
+	rm -f $(NAME)
+
+re:	fclean all
+
+.PHONY:	all clean fclean re
