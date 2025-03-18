@@ -12,15 +12,15 @@ let sequence n =
       | a::b::tail -> rev_list tail (a::b::acc)
       | _ -> acc
     in
-    let rec tuple_list_to_string tuple_lst = match tuple_lst with
-      | a::b::tail -> a^b^(tuple_list_to_string tail)
-      | a::[] -> a
-      | _ -> ""
+    let rec tuple_list_to_string tuple_lst acc = match tuple_lst with
+      | a::b::tail -> (tuple_list_to_string tail (acc^a^b))
+      | a::[] -> (acc^a)
+      | _ -> acc
     in
     let rec loop lst i = match i with
       | j when j = n -> lst
       | _ -> loop (rev_list (count_next lst []) []) (i + 1)
-    in tuple_list_to_string (loop ["1"] 1)
+    in tuple_list_to_string (loop ["1"] 1) ""
 
 let () =
   print_endline (sequence (-1));

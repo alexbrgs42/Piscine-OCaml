@@ -17,6 +17,7 @@ let generate_nucleotide nucleob = match nucleob with
 type helix = nucleotide list
 
 let generate_helix n =
+  Random.self_init ();
   if n <= 0 then
     []
   else

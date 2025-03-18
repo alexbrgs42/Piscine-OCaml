@@ -4,10 +4,10 @@ let encode lst =
     | (x::l), ((n, a)::t) when x = a -> aux l ((n + 1, a)::t)
     | (x::l), _ -> aux l ((1, x)::acc)
   in
-  let rec inv l = match l with
-    | [] -> []
-    | a::t -> (inv t)@[a]
-  in aux (inv lst) []
+  let rec inv l acc = match l with
+    | [] -> acc
+    | a::t -> inv t ([a]@acc)
+  in aux (inv lst []) []
 
 let rec print_char_list l = match l with
   | [] -> print_string "\n"
@@ -22,4 +22,4 @@ let rec print_int_list l = match l with
 let () =
   print_char_list (encode ['a'; 'a'; 'a'; 'b'; 'b'; 'b']);
   print_int_list (encode [1; 5; 3; 3; 0]);
-  print_char_list (encode [])
+  print_endline (if encode [] = [] then "empty list" else "non empty list")
