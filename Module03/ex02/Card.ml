@@ -14,7 +14,7 @@ module Color = struct
     | Heart -> "Heart"
     | Diamond -> "Diamond"
     | Club -> "Club"
-end;;
+end
 
 module Value = struct
   type t = T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 | T10 | Jack | Queen | King | As
@@ -95,81 +95,81 @@ module Value = struct
     | Queen  -> Jack
     | King -> Queen
     | As -> King
-end;;
+end
 
-type t = Value.t * Color.t;;
+type t = Value.t * Color.t
 
 let newCard (value: Value.t)  (color: Color.t) : t =
-  (value, color);;
+  (value, color)
 
 let allSpades = 
   let rec aux value = match value with
     | Value.As -> [(newCard Value.As Color.Spade)]
     | v -> (newCard v Color.Spade)::(aux (Value.next v))
-  in aux Value.T2;;
+  in aux Value.T2
 
 let allHearts = 
   let rec aux value = match value with
     | Value.As -> [(newCard Value.As Color.Heart)]
     | v -> (newCard v Color.Heart)::(aux (Value.next v))
-  in aux Value.T2;;
+  in aux Value.T2
 
 let allDiamonds = 
   let rec aux value = match value with
     | Value.As -> [(newCard Value.As Color.Diamond)]
     | v -> (newCard v Color.Diamond)::(aux (Value.next v))
-  in aux Value.T2;;
+  in aux Value.T2
 
 let allClubs = 
   let rec aux value = match value with
     | Value.As -> [(newCard Value.As Color.Club)]
     | v -> (newCard v Color.Club)::(aux (Value.next v))
-  in aux Value.T2;;
+  in aux Value.T2
 
-let all = allSpades@allHearts@allDiamonds@allClubs;;
+let all = allSpades@allHearts@allDiamonds@allClubs
 
 let getValue ((value, c): t) =
-  value;;
+  value
 
 let getColor ((v, color): t) =
-  color;;
+  color
 
 let toString ((value, color): t) =
-  (Value.toString value)^(Color.toString color);;
+  (Value.toString value)^(Color.toString color)
 
 let toStringVerbose ((value, color): t) =
-  "Card("^(Value.toStringVerbose value)^", "^(Color.toStringVerbose color)^")";;
+  "Card("^(Value.toStringVerbose value)^", "^(Color.toStringVerbose color)^")"
 
 let compare ((v1, c1): t) ((v2, c2): t) = match v1, v2 with
   | a, b when (Value.toInt a) > (Value.toInt b) -> 1
   | a, b when (Value.toInt a) < (Value.toInt b) -> (-1)
-  | _ -> 0;;  
+  | _ -> 0  
 
 let max (card1: t) (card2: t) : t  = match compare card1 card2 with
   | 1 | 0 -> card1
-  | _ -> card2;;
+  | _ -> card2
 
 let min (card1: t) (card2: t) : t = match compare card1 card2 with
   | 1 -> card2
-  | _ -> card1;;
+  | _ -> card1
 
 let best (card_list: t list) : t =
   if card_list = [] then
     invalid_arg "List is empty."
   else
-    List.fold_left max (Value.T2, Color.Spade) card_list;;
+    List.fold_left max (Value.T2, Color.Spade) card_list
 
 let isOf (card: t) (ref_color: Color.t) = match card with
-  | (v, c) -> c = ref_color;;
+  | (v, c) -> c = ref_color
 
 let isSpade ((v, c): t) =
-  c = Color.Spade;;
+  c = Color.Spade
 
 let isHeart ((v, c): t) =
-  c = Color.Heart;;
+  c = Color.Heart
 
 let isDiamond ((v, c): t) =
-  c = Color.Diamond;;
+  c = Color.Diamond
 
 let isClub ((v, c): t) =
-  c = Color.Club;;
+  c = Color.Club
