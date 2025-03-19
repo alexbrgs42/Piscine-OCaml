@@ -74,16 +74,19 @@ let k_nn lst k model_radar =
     aux (Array.to_list k_nearest) []
 
 let test_accuracy f lst models =
-  let len_lst = List.length lst in
-  let len_models = Array.length models in
-  let total = len_lst * len_models in
-  let my_res = ref 0. in
-  for j = 0 to (len_models - 1) do
-    for i = 1 to len_lst do
-      if (f lst i (models.(j))) = (f lst len_lst (models.(j))) then my_res := !my_res +. 1.
-    done
-  done;
-  Printf.printf "Based on %d models, the accuracy is : %f%% (%d/%d)\n" len_models (!my_res /. (float_of_int total)) (int_of_float !my_res) total
+  if lst = [] || models = [||] then
+    print_endline ""
+  else
+    let len_lst = List.length lst in
+    let len_models = Array.length models in
+    let total = len_lst * len_models in
+    let my_res = ref 0. in
+    for j = 0 to (len_models - 1) do
+      for i = 1 to len_lst do
+        if (f lst i (models.(j))) = (f lst len_lst (models.(j))) then my_res := !my_res +. 1.
+      done
+    done;
+    Printf.printf "Based on %d models, the accuracy is : %.4f%% (%d/%d)\n" len_models (!my_res /. (float_of_int total) *. 100.) (int_of_float !my_res) total
 
 (* main *)
 
