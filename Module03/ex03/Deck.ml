@@ -181,7 +181,7 @@ type t = Card.t list
 let newDeck =
   Random.self_init ();
   let ordered_deck = Card.all in
-  let get_random () = Random.int (List.length ordered_deck - 2) in
+  let get_random () = Random.int (List.length ordered_deck) in
   let swap d x y =
     let u = List.nth d x in
     let v = List.nth d y in
@@ -191,7 +191,7 @@ let newDeck =
     in aux d
   in
   let rec shift_list new_deck i = match i with
-    | 50 -> new_deck
+    | 60 -> new_deck
     | _ -> shift_list (swap new_deck (get_random ()) (get_random ())) (i + 1)
   in
   shift_list ordered_deck 0
