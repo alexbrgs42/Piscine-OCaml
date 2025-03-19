@@ -46,7 +46,7 @@ let one_nn lst model_radar =
   else
     let dist_radar = List.map (fun x -> (eu_dist (fst x) (fst model_radar), snd x)) lst in
     let ordered_dist_radar = List.sort (fun a b -> compare (fst a) (fst b)) dist_radar in
-    snd (Array.of_list ordered_dist_radar).(0)
+    snd (List.hd ordered_dist_radar)
 
 (* Display functions *)
 
