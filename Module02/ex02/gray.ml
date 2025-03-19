@@ -9,7 +9,7 @@ let prev_gray_code prefix str_code rev =
     | head::tail, [] -> rev_list tail [head]
     | head::tail, _ -> rev_list tail (head::acc)
   in
-  if rev = false then
+  if rev = true then
     String.concat " " (prefix_string list_code [])
   else
     String.concat " " (rev_list (prefix_string list_code []) [])
