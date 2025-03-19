@@ -16,5 +16,5 @@ let () =
   with e -> ()
 
 (* ocamlopt unix.cmxa micronap.ml *)
-(* .cmxa is is the extension of native code libraries,
+(* .cmxa is the extension of native code libraries,
   while .cma is the extension of bytecode libraries *)

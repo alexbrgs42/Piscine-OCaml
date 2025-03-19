@@ -32,7 +32,9 @@ let toStringList lst =
   let len = List.length lst in
   let str = ref "[" in
   for i = 0 to (len - 1) do
-    str := !str^(toStringCouple (List.nth lst i))^"; "
+    str := !str^(toStringCouple (List.nth lst i));
+    if i <> len - 1 then
+      str := !str^"\n"
   done;
   !str^"]"
 

@@ -40,15 +40,13 @@ let eu_dist a b =
 
 type radar = float array * string
 
-let one_nn list_radar model_radar =
-  let list_vector = fst (List.split list_radar) in
-  let list_eu_dist = List.map (eu_dist (fst model_radar)) list_vector in
-  let min_eu_dist = List.fold_left min (List.hd list_eu_dist) list_eu_dist in
-  let i = ref 0 in
-  while (min_eu_dist <> (Array.of_list list_eu_dist).(!i)) do
-    incr i
-  done;
-  snd (Array.of_list list_radar).(!i)
+let one_nn lst model_radar =
+  if lst = [] then
+    ""
+  else
+    let dist_radar = List.map (fun x -> (eu_dist (fst x) (fst model_radar), snd x)) lst in
+    let ordered_dist_radar = List.sort (fun a b -> compare (fst a) (fst b)) dist_radar in
+    snd (Array.of_list ordered_dist_radar).(0)
 
 (* Display functions *)
 
