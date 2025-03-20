@@ -1,4 +1,4 @@
-module FletcherHash = struct
+module FletcherHash : (Hashtbl.HashedType with type t = string) = struct
   type t = string
   let equal str1 str2 = str1 = str2
   let hash str =
@@ -9,7 +9,7 @@ module FletcherHash = struct
     aux (String.length str - 1) 0
 end
 
-module StringHashtbl = Hashtbl.Make (FletcherHash)
+module StringHashtbl : (Hashtbl.S with type key = string) = Hashtbl.Make (FletcherHash)
 
 let () =
   let ht = StringHashtbl.create 5 in

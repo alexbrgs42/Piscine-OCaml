@@ -1,4 +1,4 @@
-module StringOrder = 
+module StringOrder : (Set.OrderedType with type t = string) = 
   struct
     type t = string
     let compare str1 str2 =
@@ -10,7 +10,7 @@ module StringOrder =
         (-1)
   end
 
-module StringSet = Set.Make (StringOrder)
+module StringSet : (Set.S with type elt = string) = Set.Make (StringOrder)
 
 let () =
   let set = List.fold_right StringSet.add [ "foo"; "bar"; "baz"; "qux" ] StringSet.empty in
