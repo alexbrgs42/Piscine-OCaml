@@ -1,38 +1,38 @@
-################### BASE ###################
+############## base ##############
 
 NAME = leW
 
-CAMLOPT = ocamlopt
+CMALOPT = ocamlopt
 
 SOURCES = people.ml doctor.ml dalek.ml army.ml galifrey.ml main.ml
 
 OBJ = $(SOURCES:.ml=.cmx)
 
-################### RULES ###################
+############## rules ##############
 
 all:	$(NAME)
 
-################### COMPILATION ###################
+############## compilation ##############
 
 $(NAME):	$(OBJ)
-	$(CAMLOPT) -o $(NAME) $(OBJ)
+	$(CMALOPT) -o $(NAME) $(OBJ)
 
-################### LINK ###################
+############## link ##############
 
 .SUFFIXES:
 .SUFFIXES:	.ml .cmx
 
 .ml.cmx:
-	$(CAMLOPT) -c $<
+	$(CMALOPT) -c $<
 
-################### CLEAN ###################
+############## clean ##############
 
 clean:
 	rm -f $(OBJ)
 	rm -f $(SOURCES:.ml=.cmi)
 	rm -f $(SOURCES:.ml=.o)
 
-fclean:
+fclean:	clean
 	rm -f $(NAME)
 
 re:	fclean all

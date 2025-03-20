@@ -1,8 +1,8 @@
 class ['a] army =
-  object
-    val members:'a list = []
+  object (self)
+    val members : 'a list = []
     
-    method add (instance:'a) = {< members = List.append members [instance] >}
+    method add (instance :'a) = {< members = List.append members [instance] >}
     method delete =
       let rec aux lst = match lst with
         | [] | _::[] -> []
