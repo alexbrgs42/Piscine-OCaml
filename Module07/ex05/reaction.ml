@@ -12,6 +12,7 @@ class virtual reaction _start _result =
         _result
     method virtual balance : reaction
     method virtual is_balanced : bool
+    method virtual get_incomplete_results : (int * (Molecule.molecule * int) list) list
 
   end
 
@@ -70,7 +71,7 @@ class alkane_combustion alkanes =
         (new Molecule.carbon_dioxide, alkane_cf * n);
         (new Molecule.water, alkane_cf * (n + 1))]
 
-    method private group_mol (lst : (Molecule.molecule * int) list) =
+    method private group_mol lst =
       let rec aux (l : (Molecule.molecule * int) list) (acc : (Molecule.molecule * int) list) = match l, acc with
         | [], _ -> acc
         | (a, b)::tail1, (x, y)::tail2 when a#get_name = x#get_name -> aux tail1 ((x, y + b)::tail2)
@@ -102,5 +103,42 @@ class alkane_combustion alkanes =
             | _ -> true
           in
           (balance_start start_molecules) && (balance_result result_molecules)
+    
+    (* n -> C, _ -> H, p -> O *)
+    (* i -> CO2, j -> CO, k -> C *)
+    method private incomplete_is_balanced (n, o, p) (i, j, k) =
+      if n = i + j + k && p = (o / 2) + (i * 2) + j then
+        true
+      else
+        false
 
+    method private generate_incomplete_reaction alkane p =
+      let n = get_n_by_alkane_name (fst alkane) in
+      let o = 2 * n + 2 in
+      let get_reaction i j k = List.filter (fun x -> (snd x) <> 0)
+        [(new Molecule.carbon_dioxide, i);
+        (new Molecule.carbon_monoxide, j);
+        (new Molecule.carbon, k);
+        (new Molecule.water, o / 2)] in
+      let rec aux i j k acc = match i, j, k with
+        | a, _, _ when a > n -> acc
+        | _, b, _ when b > n || b > p -> aux (i + 1) 0 0 acc
+        | _, _, c when c > n -> aux i (j + 1) 0 acc
+        | _ when self#incomplete_is_balanced (n, o, p) (i, j, k) -> aux i j (k + 1) ((p / 2, (get_reaction i j k))::acc)
+        | _  -> aux i j (k + 1) acc
+      in
+      aux 0 0 0 []
+
+    method get_incomplete_results =
+      let start_molecules = self#group_mol (start alkanes) in
+      let alkane = (List.hd (List.filter (fun x -> is_alkane (fst x)) start_molecules)) in
+      let n = get_n_by_alkane_name (fst alkane) in
+      if List.length start_molecules <> 2 then
+        []
+      else
+        let rec aux i acc = match i with
+          | j when j = (-1) -> acc
+          | _ -> aux (i - 1) ((self#generate_incomplete_reaction alkane (i * 2))@acc)
+        in
+        aux (2 * n + 2) []
   end
