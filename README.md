@@ -50,8 +50,8 @@ build order :\
 
 ```bash
 # Clone the repository
-$ git clone git@github.com:alexbrgs42/Piscine-OCaml.git
-$ cd Piscine-OCaml
+git clone git@github.com:alexbrgs42/Piscine-OCaml.git
+cd Piscine-OCaml
 ```
 
 You can then change directory into the Module you want to look for !
@@ -59,9 +59,9 @@ You can then change directory into the Module you want to look for !
 Some exercices have a Makefile, others don't (depending on the assignment). If needed you can simply compile every source code of the exercise with the compiler `ocamlopt` like this :
 
 ```bash
-$ cd Module00
-$ cd ex00
-$ ocamlopt Main.ml
-$ ./a.out
+cd Module00
+cd ex00
+ocamlopt Main.ml
+./a.out
 Hello World !
 ```
