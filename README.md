@@ -24,7 +24,7 @@ I also was able to have a better understanding of functional programming and I d
 • Module07 - Object oriented programming\
 • Module08 - Monoids and Monads
 
-## Memo
+## 📌 Memo
 
  .ml  : source code\
  .mli : interface file\
@@ -54,6 +54,8 @@ git clone git@github.com:alexbrgs42/Piscine-OCaml.git
 cd Piscine-OCaml
 ```
 
+## 📈 Build and 🏃 run
+
 You can then change directory into the Module you want to look for !
 
 Some exercices have a Makefile, others don't (depending on the assignment). If needed you can simply compile every source code of the exercise with the compiler `ocamlopt` like this :
@@ -68,6 +70,16 @@ ocamlopt ft_test_sign.ml
 Finally you have an executable :
 
 ```bash
+$ ./a.out
+positive
+positive
+negative
+```
+
+Otherwise you only need to `make`:
+
+```bash
+$ make
 $ ./a.out
 positive
 positive
