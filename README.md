@@ -61,7 +61,15 @@ Some exercices have a Makefile, others don't (depending on the assignment). If n
 ```bash
 cd Module00
 cd ex00
-ocamlopt Main.ml
-./a.out
-Hello World !
+# ! Here you need to decomment the main !
+ocamlopt ft_test_sign.ml
+```
+
+Finally you have an executable :
+
+```bash
+$ ./a.out
+positive
+positive
+negative
 ```
