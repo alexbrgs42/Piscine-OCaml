@@ -14,15 +14,15 @@ I also was able to have a better understanding of functional programming and I d
 
 ## 📚 Modules
 
-• Module00 - Basic syntax and semantics\
-• Module01 - Recursion and higher-order functions\
-• Module02 - Pattern Matching and Data Types\
-• Module03 - OCaml’s modules language\
-• Module04 - Imperative features\
-• Module05 - Functor\
-• Module06 - Object oriented programming\
-• Module07 - Object oriented programming\
-• Module08 - Monoids and Monads
+• [Module00](https://github.com/alexbrgs42/Piscine-OCaml/tree/main/Module00) - Basic syntax and semantics\
+• [Module01](https://github.com/alexbrgs42/Piscine-OCaml/tree/main/Module01) - Recursion and higher-order functions\
+• [Module02](https://github.com/alexbrgs42/Piscine-OCaml/tree/main/Module02) - Pattern Matching and Data Types\
+• [Module03](https://github.com/alexbrgs42/Piscine-OCaml/tree/main/Module03) - OCaml’s modules language\
+• [Module04](https://github.com/alexbrgs42/Piscine-OCaml/tree/main/Module04) - Imperative features\
+• [Module05](https://github.com/alexbrgs42/Piscine-OCaml/tree/main/Module05) - Functor\
+• [Module06](https://github.com/alexbrgs42/Piscine-OCaml/tree/main/Module06) - Object oriented programming\
+• [Module07](https://github.com/alexbrgs42/Piscine-OCaml/tree/main/Module07) - Object oriented programming\
+• [Module08](https://github.com/alexbrgs42/Piscine-OCaml/tree/main/Module08) - Monoids and Monads
 
 ## 📌 Memo
 
