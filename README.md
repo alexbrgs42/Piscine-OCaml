@@ -1,11 +1,37 @@
 # OCAML
 
- .ml : source code\
+## 📖 About
+
+This project is called a Piscine. Within 9 modules, each composed of multiple exercices, I explored a large panel of tools available in OCaml that I listed bellow. 
+
+**<ins>Why OCaml ?</ins>**
+
+I discovered OCaml earlier in my studies and really enjoyed pattern matching that I found so powerfull and elegant. 
+
+**<ins>What did I gain ?</ins>**
+
+I also was able to have a better understanding of functional programming and I discussed a lot about programming paradigm with my peers. I gained a better culture and I have a lot more tools, algorithms and perspectives which I find essential in dev.
+
+## 📚 Modules
+
+• Module00 - Basic syntax and semantics\
+• Module01 - Recursion and higher-order functions\
+• Module02 - Pattern Matching and Data Types\
+• Module03 - OCaml’s modules language\
+• Module04 - Imperative features\
+• Module05 - Functor\
+• Module06 - Object oriented programming\
+• Module07 - Object oriented programming\
+• Module08 - Monoids and Monads
+
+## Memo
+
+ .ml  : source code\
  .mli : interface file\
  .cmi : compiled interface file\
  .cmo : object bytecode\
  .cmx : native compilation info\
- .o : native code compiled\
+ .o   : native code compiled\
  
  .ml + .mli = a compilation unit\
  .cma = lib\
@@ -15,5 +41,27 @@ build order :\
  1 - source with ocamlc/ocamlopt -c test.ml\
  2 - then we link with ocamlc/ocamlopt
 
+## 📚 Ressources
 
-watch: https://elearning.intra.42.fr/notions/piscine-ocaml-d04-modules-language/subnotions/piscine-ocaml-d04-modules-language-7-modular-programming-vs-object-oriented-programming/videos/313
+- Object Oriented Programming : [Video](https://elearning.intra.42.fr/notions/piscine-ocaml-d04-modules-language/subnotions/piscine-ocaml-d04-modules-language-7-modular-programming-vs-object-oriented-programming/videos/313)
+- Brian Beckman: Don't fear the Monad : [Amazing video !](https://www.youtube.com/watch?v=ZhuHCtR3xq8)
+
+## 🛠️ Installation
+
+```bash
+# Clone the repository
+$ git clone git@github.com:alexbrgs42/Piscine-OCaml.git
+$ cd Piscine-OCaml
+```
+
+You can then change directory into the Module you want to look for !
+
+Some exercices have a Makefile, others don't (depending on the assignment). If needed you can simply compile every source code of the exercise with the compiler `ocamlopt` like this :
+
+```bash
+$ cd Module00
+$ cd ex00
+$ ocamlopt Main.ml
+$ ./a.out
+Hello World !
+```
